@@ -1,0 +1,26 @@
+#include <iostream>
+#include <set>
+using namespace std;
+ 
+bool hasUniqueDigits(int year) {
+    set<char> digits;
+    string s = to_string(year);
+    for (char c : s)
+        digits.insert(c);
+    return digits.size() == 4;
+}
+ 
+int main() {
+    int y;
+    cin >> y;
+    
+    while (true) {
+        y++;
+        if (hasUniqueDigits(y)) {
+            cout << y << endl;
+            break;
+        }
+    }
+ 
+    return 0;
+}
