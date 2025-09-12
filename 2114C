@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        int n;
+        cin >> n;
+
+        int arr[200005];
+        for (int i = 0; i < n; i++) cin >> arr[i];
+
+        int groups = 0;
+        int last = -1;  // so the first element always starts a new group
+
+        for (int i = 0; i < n; i++) {
+            if (arr[i] - last > 1) { 
+                groups++;     // new group
+                last = arr[i];
+            }
+        }
+
+        cout << groups << "\n";
+    }
+
+    return 0;
+}
