@@ -1,0 +1,70 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int w, h;
+        cin >> w >> h;
+
+        int k;
+        cin >> k;
+        int bottom[k];
+        for(int i = 0; i < k; i++) cin >> bottom[i];
+
+        int k1;
+        cin >> k1;
+        int top[k1];
+        for(int i = 0; i < k1; i++) cin >> top[i];
+
+        int n;
+        cin >> n;
+        int left[n];
+        for(int i = 0; i < n; i++) cin >> left[i];
+
+        int n1;
+        cin >> n1;
+        int right[n1];
+        for(int i = 0; i < n1; i++) cin >> right[i];
+
+        long long maxArea = 0;
+
+        // Find min and max for bottom
+        int minBottom = bottom[0], maxBottom = bottom[0];
+        for(int i = 1; i < k; i++){
+            if(bottom[i] < minBottom) minBottom = bottom[i];
+            if(bottom[i] > maxBottom) maxBottom = bottom[i];
+        }
+        maxArea = max(maxArea, (long long)(maxBottom - minBottom) * h);
+
+        // Find min and max for top
+        int minTop = top[0], maxTop = top[0];
+        for(int i = 1; i < k1; i++){
+            if(top[i] < minTop) minTop = top[i];
+            if(top[i] > maxTop) maxTop = top[i];
+        }
+        maxArea = max(maxArea, (long long)(maxTop - minTop) * h);
+
+        // Find min and max for left
+        int minLeft = left[0], maxLeft = left[0];
+        for(int i = 1; i < n; i++){
+            if(left[i] < minLeft) minLeft = left[i];
+            if(left[i] > maxLeft) maxLeft = left[i];
+        }
+        maxArea = max(maxArea, (long long)(maxLeft - minLeft) * w);
+
+        // Find min and max for right
+        int minRight = right[0], maxRight = right[0];
+        for(int i = 1; i < n1; i++){
+            if(right[i] < minRight) minRight = right[i];
+            if(right[i] > maxRight) maxRight = right[i];
+        }
+        maxArea = max(maxArea, (long long)(maxRight - minRight) * w);
+
+        cout << maxArea << endl;
+    }
+
+    return 0;
+}
